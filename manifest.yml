@@ -1,0 +1,17 @@
+modules:
+  'jira:issuePanel':
+    - key: prototypes-creator-issue-panel
+      function: main
+      title: Prototypes
+      description: Create prototypes right into your Jira Issues
+      label: Prototypes
+  function:
+    - key: main
+      handler: index.run
+permissions:
+  scopes:
+    - 'read:jira-work'
+    - 'write:jira-work'
+app:
+  id: 'ari:cloud:ecosystem::app/d99ef440-e880-483b-9256-771e69dedf30'
+  name: prototypes
