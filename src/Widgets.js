@@ -1,8 +1,8 @@
 import Icons from './Icons'
 import Images from './Images'
 
-const convertInnerWidgets = (data) => {
-	let result =  data.map(item => Widgets[item.widgetType](item)).join('\n')
+const convertInnerWidgets = (data, styles, size) => {
+	let result =  data.map(item => Widgets[item.widgetType](item, styles, size)).join('\n')
 	return result
 }
 
@@ -12,7 +12,7 @@ const Card = (content, styles, size) => {
 		width: 300,
 		title: content.defaultValue || 'Title',
 		subtitle : content.subtitle || '',
-		widgets : content.innerWidgets ? convertInnerWidgets(content.innerWidgets) : '',
+		widgets : content.innerWidgets ? convertInnerWidgets(content.innerWidgets, styles, size) : '',
 	}
 	let props = Object.assign(defaultProps, content)
 
@@ -62,7 +62,7 @@ const Tab = (content, styles, size) => {
 
 const Tabs = (content, styles, size) => {
 	const defaultProps = {
-		widgets : content.innerWidgets ? convertInnerWidgets(content.innerWidgets) : '',
+		widgets : content.innerWidgets ? convertInnerWidgets(content.innerWidgets, styles, size) : '',
 	}
 	let props = Object.assign(defaultProps, content)
 
@@ -286,13 +286,14 @@ const Option = (content, styles, size) => {
 }
 
 const Radio = (content, styles, size) => {
+
 	if (content.innerWidgets) {
 		content.innerWidgets[0].active = true
 	}
 	const defaultProps = {
 		label: content.defaultValue || 'Radio',
 		top: 10,
-		widgets : content.innerWidgets ? convertInnerWidgets(content.innerWidgets) : '',
+		widgets : content.innerWidgets ? convertInnerWidgets(content.innerWidgets, styles, size) : '',
 	}
 	const props = Object.assign(defaultProps, content)
 
@@ -333,7 +334,7 @@ const List = (content, styles, size) => {
 	const defaultProps = {
 		title: content.defaultValue,
 		size: 18,
-		widgets : content.innerWidgets ? convertInnerWidgets(content.innerWidgets) : '',
+		widgets : content.innerWidgets ? convertInnerWidgets(content.innerWidgets, styles, size) : '',
 	}
 	const props = Object.assign(defaultProps, content)
 
@@ -420,7 +421,7 @@ const Menu = (content, styles, size) => {
 		background: 'white',
 		lineColor: "#ccc",
 		title: content.defaultValue || 'Title',
-		widgets : content.innerWidgets ? convertInnerWidgets(content.innerWidgets) : '',
+		widgets : content.innerWidgets ? convertInnerWidgets(content.innerWidgets, styles, size) : '',
 	}
 	const props = Object.assign(defaultProps, content)
 
